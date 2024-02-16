@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>BusRepeater_NXP_Arduino: MUX_SW_NXP_Arduino</title>
+<title>BusRepeater_NXP_Arduino: BusRepeater_NXP_Arduino</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -23,7 +23,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">BusRepeater_NXP_Arduino<span id="projectnumber">&#160;1.0.0</span>
+   <div id="projectname">BusRepeater_NXP_Arduino<span id="projectnumber">&#160;1.0.1</span>
    </div>
    <div id="projectbrief">Temperature sensor device operation sample code for Arduino</div>
   </td>
@@ -72,7 +72,7 @@ $(function() {
 
 </div><!-- top -->
 <div><div class="header">
-  <div class="headertitle"><div class="title">MUX_SW_NXP_Arduino</div></div>
+  <div class="headertitle"><div class="title">BusRepeater_NXP_Arduino</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="autotoc_md0"></a>I2C bus-repeater device evaluation board sample code for <a href="https://www.arduino.cc">Arduino</a></p>
@@ -81,7 +81,8 @@ $(function() {
 </blockquote>
 <p>This library works with <a href="https://github.com/teddokano/I2C_device_Arduino"><code>I2C_device</code></a> and <a href="https://github.com/teddokano/MUX_SW_NXP_Arduino">MUX_SW_NXP_Arduino</a> libraries together. Please be sure both libraries are imported in your environment before trying to build.</p>
 <p><img src="https://github.com/teddokano/additional_files/blob/main/BusRepeater_NXP_Arduino/board.jpg" alt="Boards" class="inline"/> <br  />
- <em>PCA9617ADP-ARD : Arduino® Shield Evaluation Board for I²C bus repeater</em></p>
+ <em>PCA9617ADP-ARD : Arduino® Shield Evaluation Board for I²C bus repeater</em> <br  />
+ <em>Oscilloscope probes are on J18 (A-side of DUT, voltage is controled by <a class="el" href="class_l_d_o1.html">LDO1</a>) and J15 (B-side, <a class="el" href="class_l_d_o2.html">LDO2</a>) jumper pins to monitor I²C signal voltage</em></p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 What is this?</h1>
 <p>An Arduino demo code for I2C bus-repeater device evaluation board. <br  />
@@ -91,7 +92,12 @@ What is this?</h1>
  Use an oscilloscope to find voltage/waveform on the board.</p>
 <h1><a class="anchor" id="autotoc_md2"></a>
 Supported board</h1>
-<p>Type#|Header file|Features|Interface|Evaluation board &mdash;|&mdash;|&mdash;|&mdash; <a href="https://www.nxp.com/products/interfaces/ic-spi-i3c-interface-devices/ic-bus-repeaters-hubs-extenders/level-translating-fm-plus-ic-bus-repeater:PCA9617A">PCA9617A</a> |Level Translating Fm+ I²C-Bus Repeater |I²C Fast-mode Plus (1MHz) |<a href="https://www.nxp.com/design/design-center/development-boards/analog-toolbox/arduino-shields-solutions/pca9617adp-ard-arduino-shield-level-translating-fm-plus-ic-bus-repeater-evaluation-board:PCA9617ADP-ARD">PCA9617ADP-ARD Arduino Shield Level Translating Fm+ I2C-Bus Repeater Evaluation Board</a></p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Type#   </th><th class="markdownTableHeadNone">Features   </th><th class="markdownTableHeadNone">Interface   </th><th class="markdownTableHeadNone">Evaluation board    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a href="https://www.nxp.com/products/interfaces/ic-spi-i3c-interface-devices/ic-bus-repeaters-hubs-extenders/level-translating-fm-plus-ic-bus-repeater:PCA9617A">PCA9617A</a>   </td><td class="markdownTableBodyNone">Level Translating Fm+ I²C-Bus Repeater   </td><td class="markdownTableBodyNone">I²C Fast-mode Plus (1MHz)   </td><td class="markdownTableBodyNone"><a href="https://www.nxp.com/design/design-center/development-boards/analog-toolbox/arduino-shields-solutions/pca9617adp-ard-arduino-shield-level-translating-fm-plus-ic-bus-repeater-evaluation-board:PCA9617ADP-ARD">PCA9617ADP-ARD Arduino Shield Level Translating Fm+ I2C-Bus Repeater Evaluation Board</a>   </td></tr>
+</table>
 <h1><a class="anchor" id="autotoc_md3"></a>
 Getting started</h1>
 <p>Use Library manager in Arduino IDE for easy install</p>
@@ -110,28 +116,29 @@ How to use?</h3>
 <p>After library install, Choose menu on Arduino-IDE: <code>File</code>→<code>Examples</code>→<code>BusRepeater_NXP_Arduino</code>→ PCA9617ADP-ARD_demo</p>
 <h3><a class="anchor" id="autotoc_md8"></a>
 The demo code</h3>
-<p>When the program is started, messages are appeared on terminal screen at beggining only. <br  />
- While the demo running, no screen update will be done because <a class="el" href="class_l_d_o2.html">LDO2</a> control line is shared with <code>Serial.print()</code> feature on Arduino SDK. To perform all voltage variation on <a class="el" href="class_l_d_o2.html">LDO2</a>, the screen output needed to be disabled. <br  />
- While the demo, prove on the signal lines and monitor the wavrform on an oscilloscope. <br  />
+<p>When the program is started, <b>messages</b> are appeared on terminal screen at <b>begining only</b>. <br  />
+ <b>While the demo running, no screen update will be done</b> because <a class="el" href="class_l_d_o2.html">LDO2</a> control line is shared with <code>Serial.print()</code> feature on Arduino SDK. <u>To perform output all voltage variation on <a class="el" href="class_l_d_o2.html">LDO2</a>, the screen message needed to be disabled.</u> <br  />
+ While the demo, prove on the signal lines and monitor the waveform on an oscilloscope. <br  />
 </p>
 <p><a class="el" href="class_l_d_o1.html">LDO1</a> and <a class="el" href="class_l_d_o2.html">LDO2</a> can output several voltages. <a class="el" href="class_l_d_o1.html">LDO1</a> voltage becomes the signal voltage on A-side of DUT and <a class="el" href="class_l_d_o2.html">LDO2</a> voltage becomes B-side one. <br  />
- <a class="el" href="class_l_d_o1.html">LDO1</a> output can be set 0.8V, 1.8V, 2.5V, 3.3V and 4.96V. <br  />
- <a class="el" href="class_l_d_o2.html">LDO2</a> output can be set 2.5V, 3.0V, 3.3V and 4.96V. <br  />
- The demo performs I²C comunication with all convination of two LDO output except condition of "LDO1=4.96 and LDO2=2.5V". This is not allowed convination (see datasheet Table 5, note [2]), this is prevented on board hardware mechanism (see <code>INTER_LOCK</code> signal on schematic diagram). <br  />
+</p><ul>
+<li><a class="el" href="class_l_d_o1.html">LDO1</a> (A-side, I²C signals on J18) output can be set 0.8V, 1.8V, 2.5V, 3.3V and 4.96V. <br  />
+</li>
+<li><a class="el" href="class_l_d_o2.html">LDO2</a> (B-side, I²C signals on J15) output can be set 2.5V, 3.0V, 3.3V and 4.96V. <br  />
+</li>
+</ul>
+<p>The demo performs I²C comunication with all convination of two LDO output except condition of "LDO1=4.96 and LDO2=2.5V". This is not allowed convination (see datasheet Table 5, note [2]), this is prevented on board hardware mechanism (see <code>INTER_LOCK</code> signal on schematic diagram). <br  />
 </p>
-<p>User can set to show messages while the demo by disabling <code>ENABLE_FULL_LDO2_VOLTAGE_VARIATION</code> option (comment out the line of this word definition). It will show some information on the screen but the voltage on <a class="el" href="class_l_d_o2.html">LDO2</a> will be repeated in "3.3V, 4.96V, 3.3V, 4.96V" pattern. <br  />
+<p>User can set to show messages while the demo by disabling <code>ENABLE_FULL_LDO2_VOLTAGE_VARIATION</code> option (comment-out the line of this word definition). It will show some information on the screen but the voltage on <a class="el" href="class_l_d_o2.html">LDO2</a> will be repeated in "3.3V, 4.96V, 3.3V, 4.96V" pattern. <br  />
 </p>
 <p>Followings are waveform. Both are SCL line voltage, ch1 (yellow) is A-side and ch2 (blue) is B-side. <br  />
  All <a class="el" href="class_l_d_o2.html">LDO2</a> output tried at one <a class="el" href="class_l_d_o1.html">LDO1</a> output level. Negative spikes are I²C communication which is done after 1 second from each voltage setting completed. <br  />
- <img src="https://github.com/teddokano/additional_files/blob/main/BusRepeater_NXP_Arduino/waveforms0.jpg" alt="Waveforms" class="inline"/> <br  />
+ <img src="https://github.com/teddokano/additional_files/blob/main/BusRepeater_NXP_Arduino/waveform0.png" alt="Waveforms" class="inline"/> <br  />
 </p>
 <p>Next picture is same as above but <code>#define ENABLE_FULL_LDO2_VOLTAGE_VARIATION</code> was commented-out. <br  />
- <img src="https://github.com/teddokano/additional_files/blob/main/BusRepeater_NXP_Arduino/waveforms1.jpg" alt="Waveforms" class="inline"/> <br  />
+ <img src="https://github.com/teddokano/additional_files/blob/main/BusRepeater_NXP_Arduino/waveform1.png" alt="Waveforms" class="inline"/> <br  />
 </p>
-<h1><a class="anchor" id="autotoc_md9"></a>
-Document</h1>
-<p>For details of the library, please find descriptions in <a href="https://teddokano.github.io/MUX_SW_NXP_Arduino/annotated.html">this document</a>.</p>
-<h2><a class="anchor" id="autotoc_md10"></a>
+<h2><a class="anchor" id="autotoc_md9"></a>
 Related libraries</h2>
 <table class="markdownTable">
 <tr class="markdownTableHead">
