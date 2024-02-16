@@ -15,7 +15,7 @@ An EEPROM:M24C02 is on the board. The sample code communicats with the EEPROM to
 Use an oscilloscope to find voltage/waveform on the board. 
 
 ## Supported board
-Type#|Header file|Features|Interface|Evaluation board
+Type#|Features|Interface|Evaluation board
 ---|---|---|---
 [PCA9617A](https://www.nxp.com/products/interfaces/ic-spi-i3c-interface-devices/ic-bus-repeaters-hubs-extenders/level-translating-fm-plus-ic-bus-repeater:PCA9617A)	|Level Translating Fm+ I²C-Bus Repeater	|I²C Fast-mode Plus (1MHz)			|[PCA9617ADP-ARD Arduino Shield Level Translating Fm+ I2C-Bus Repeater Evaluation Board](https://www.nxp.com/design/design-center/development-boards/analog-toolbox/arduino-shields-solutions/pca9617adp-ard-arduino-shield-level-translating-fm-plus-ic-bus-repeater-evaluation-board:PCA9617ADP-ARD)
 
@@ -53,10 +53,10 @@ User can set to show messages while the demo by disabling `ENABLE_FULL_LDO2_VOLT
 Followings are waveform. Both are SCL line voltage, ch1 (yellow) is A-side and ch2 (blue) is B-side.  
 All LDO2 output tried at one LDO1 output level. 
 Negative spikes are I²C communication which is done after 1 second from each voltage setting completed.  
-![Waveforms](https://github.com/teddokano/additional_files/blob/main/BusRepeater_NXP_Arduino/waveforms0.jpg)  
+![Waveforms](https://github.com/teddokano/additional_files/blob/main/BusRepeater_NXP_Arduino/waveform0.png)  
 
 Next picture is same as above but `#define ENABLE_FULL_LDO2_VOLTAGE_VARIATION` was commented-out.  
-![Waveforms](https://github.com/teddokano/additional_files/blob/main/BusRepeater_NXP_Arduino/waveforms1.jpg)  
+![Waveforms](https://github.com/teddokano/additional_files/blob/main/BusRepeater_NXP_Arduino/waveform1.png)  
 
 
 # Document
