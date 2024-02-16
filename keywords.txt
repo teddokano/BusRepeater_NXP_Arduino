@@ -1,0 +1,26 @@
+##########
+# classes
+##########
+
+MUX_SW	KEYWORD1
+PCA9846	KEYWORD1
+
+##########
+# methods and functions
+##########
+
+begin	KEYWORD2
+select	KEYWORD2
+
+##########
+# register names
+##########
+
+##########
+# constants
+##########
+
+CH0	LITERAL1
+CH1	LITERAL1
+CH2	LITERAL1
+CH3	LITERAL1
