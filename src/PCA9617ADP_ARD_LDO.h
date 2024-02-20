@@ -13,90 +13,62 @@
 
 #include <I2C_device.h>
 
-/** LDO_control class
+/** Pca9617adp_Ard_LDO class
  *	
- *  @class LDO_control
- *
- *	LDO_control class is base class to control LDO on PCA9617ADP-ARD
- *	It controls the LDO output voltage via GPIO pins 
+ *  @class Pca9617adp_Ard_LDO
  */
 
-class LDO_control {
+class Pca9617adp_Ard_LDO : public BusInOut {
 public:
-	LDO_control( int s0, int s1, int en );
-	void	set( int v );
-	virtual float voltage( void )	= 0;
-
-protected:
-	int		_settting;
-
-private:
-	int		_s0;
-	int		_s1;
-	int		_en;
-};
-
-/** LDO1 class
- *	
- *  @class LDO1
- *
- *	LDO1 class is for making instance of control LDO1
- */
-
-class LDO1 : public LDO_control
-{
-public:
-	LDO1();
+	using BusInOut::operator=;
 	
-	float  voltage( void );
+	/** Create a Pca9617adp_Ard_LDO instance with specified pins
+	 *
+	 * @param ldo_number 1 or 2 to specify the LDO
+	 */
+	Pca9617adp_Ard_LDO(	int ldo_number, int pin0, int pin1, int pin2, float *v_v );
+	~Pca9617adp_Ard_LDO();
 
-	enum voltages {
-		v1_8,
-		v2_5,
-		v3_3,
-		v4_96,
-		v0_8, 
-		VOLTAGES
-	};
-
-private:
-	enum pin_num {
-		EN_B	= 3,
-		S1,
-		S0
-	};
-	static float	voltage_values[ VOLTAGES ];
-};
-
-/** LDO2 class
- *	
- *  @class LDO2
- *
- *	LDO1 class is for making instance of control LDO2
- */
-
-class LDO2 : public LDO_control
-{
-public:
-	LDO2();
-
+	/** Get Pca9617adp_Ard_LDO output voltage
+	 *
+	 * @return voltage
+	 */
 	float	voltage( void );
 
-	enum voltages {
-		v2_5,
-		v3_0,
-		v3_3,
-		v4_96, 
-		VOLTAGES
-	};
+	/** Get Pca9617adp_Ard_LDO output voltage
+	 *
+	 * @param v setting value but no output will be changed
+	 * @return voltage
+	 */
+	float	voltage( int v );
 
+	constexpr static int v1_variation = 5;
+	constexpr static int v2_variation = 4;
+	
+	static float	v1_values[ v1_variation ];
+	static float	v2_values[ v2_variation ];
+	
 private:
-	enum pin_num {
-		S1		= 1,
-		S0,
-		EN_B	= 0xFF
-	};
-	static float	voltage_values[ VOLTAGES ];
+	int				num;
+	BusInOut		ldo;
+	float			*v_values;
+
+};
+
+class Pca9617adp_Ard_LDO1 : public Pca9617adp_Ard_LDO {
+public:
+	using Pca9617adp_Ard_LDO::operator=;
+
+	Pca9617adp_Ard_LDO1( int ldo_number = 1, int pin0 = 0, int pin1 = 1, int pin2 = 4, float *v_v = v1_values );
+	~Pca9617adp_Ard_LDO1();
+};
+
+class Pca9617adp_Ard_LDO2 : public Pca9617adp_Ard_LDO {
+public:
+	using Pca9617adp_Ard_LDO::operator=;
+
+	Pca9617adp_Ard_LDO2( int ldo_number = 2, int pin0 = 2, int pin1 = 3, float *v_v = v2_values );
+	~Pca9617adp_Ard_LDO2();
 };
 
 #endif //	ARDUINO_PCA9617ADP_ARD_LDO_H

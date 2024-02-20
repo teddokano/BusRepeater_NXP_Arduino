@@ -1,35 +1,26 @@
 #include "PCA9617ADP_ARD_LDO.h"
 
-LDO_control::LDO_control( int s0, int s1, int en ) : _s0( s0 ), _s1( s1 ), _en( en )
+Pca9617adp_Ard_LDO::Pca9617adp_Ard_LDO(	int ldo_number, int pin0, int pin1, int pin2, float *v_v ) 
+	: BusInOut( pin0, pin1, pin2 ), num( ldo_number ), v_values( v_v ){}
+Pca9617adp_Ard_LDO::~Pca9617adp_Ard_LDO(){}
+
+float Pca9617adp_Ard_LDO::voltage( void )
 {
-	pinMode( _s0, OUTPUT );
-	pinMode( _s1, OUTPUT );
-	pinMode( _en, OUTPUT );
+	return v_values[ ldo ];
 }
 
-void LDO_control::set( int v )
+float Pca9617adp_Ard_LDO::voltage( int v )
 {
-	digitalWrite( _s0,  v       & 0x01 );
-	digitalWrite( _s1, (v >> 1) & 0x01 );
-	if ( 0xFF != _en ) {
-		digitalWrite( _en, (v >> 2) & 0x01 );
-	}
-	
-	_settting	= v;
-};
-
-float	LDO1::voltage( void )
-{
-	return voltage_values[ _settting ];
+	return v_values[ v ];
 }
 
-float	LDO2::voltage( void )
-{
-	return voltage_values[ _settting ];
-}
+Pca9617adp_Ard_LDO1::Pca9617adp_Ard_LDO1( int ldo_number, int pin0, int pin1, int pin2, float *v_v )
+	: Pca9617adp_Ard_LDO( ldo_number, pin0, pin1, pin2, v_v ){}
+Pca9617adp_Ard_LDO1::~Pca9617adp_Ard_LDO1(){};
 
-LDO1::LDO1() : LDO_control( LDO1::S0, LDO1::S1, LDO1::EN_B ) {}
-LDO2::LDO2() : LDO_control( LDO2::S0, LDO2::S1, LDO2::EN_B ) {}
+Pca9617adp_Ard_LDO2::Pca9617adp_Ard_LDO2( int ldo_number, int pin0, int pin1, float *v_v )
+	: Pca9617adp_Ard_LDO( ldo_number, pin0, pin1, BusInOut::nc, v_v ){}
+Pca9617adp_Ard_LDO2::~Pca9617adp_Ard_LDO2(){}
 
-float	LDO1::voltage_values[ LDO1::VOLTAGES ]	=  { 1.8, 2.5, 3.3, 4.96, 0.8 };
-float 	LDO2::voltage_values[ LDO2::VOLTAGES ]	=  { 2.5, 3.0, 3.3, 4.96 };
+float	Pca9617adp_Ard_LDO::v1_values[ v1_variation ] = { 1.2, 1.8, 2.5, 3.3, 0.95 };
+float	Pca9617adp_Ard_LDO::v2_values[ v2_variation ] = { 1.8, 2.5, 3.3, 4.96 };
