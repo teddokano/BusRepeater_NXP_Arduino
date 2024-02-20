@@ -22,5 +22,5 @@ Pca9617adp_Ard_LDO2::Pca9617adp_Ard_LDO2( int ldo_number, int pin0, int pin1, fl
 	: Pca9617adp_Ard_LDO( ldo_number, pin0, pin1, BusInOut::nc, v_v ){}
 Pca9617adp_Ard_LDO2::~Pca9617adp_Ard_LDO2(){}
 
-float	Pca9617adp_Ard_LDO::v1_values[ v1_variation ] = { 1.2, 1.8, 2.5, 3.3, 0.95 };
-float	Pca9617adp_Ard_LDO::v2_values[ v2_variation ] = { 1.8, 2.5, 3.3, 4.96 };
+float	Pca9617adp_Ard_LDO::v1_values[ v1_variation ] = { 1.8, 2.5, 3.3, 4.96, 0.8 };
+float	Pca9617adp_Ard_LDO::v2_values[ v2_variation ] = { 2.5, 3.0, 3.3, 4.96 };

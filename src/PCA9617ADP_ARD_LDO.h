@@ -11,7 +11,7 @@
 #include <Arduino.h>
 #include <stdint.h>
 
-#include <I2C_device.h>
+#include "BusInOut.h"
 
 /** Pca9617adp_Ard_LDO class
  *	

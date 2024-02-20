@@ -20,8 +20,8 @@
 #define ENABLE_FULL_LDO2_VOLTAGE_VARIATION
 
 M24C02 eeprom;
-LDO1 ldo1;
-LDO2 ldo2;
+Pca9617adp_Ard_LDO1 ldo1;
+Pca9617adp_Ard_LDO2 ldo2;
 
 #define READ_BUFFER_SIZE 128
 
@@ -61,11 +61,11 @@ void setup() {
 }
 
 void loop() {
-  for (int i = 0; i < LDO1::VOLTAGES; i++) {
-    ldo1.set(i);
+  for (int i = 0; i < Pca9617adp_Ard_LDO1::v1_variation; i++) {
+    ldo1.value(i);
 
-    for (int j = 0; j < LDO2::VOLTAGES; j++) {
-      ldo2.set(j);
+    for (int j = 0; j < Pca9617adp_Ard_LDO2::v2_variation; j++) {
+      ldo2.value(j);
 
       if ((3 == i) && (0 == j))
         continue;
