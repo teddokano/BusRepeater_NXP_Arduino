@@ -59,7 +59,7 @@ class Pca9617adp_Ard_LDO1 : public Pca9617adp_Ard_LDO {
 public:
 	using Pca9617adp_Ard_LDO::operator=;
 
-	Pca9617adp_Ard_LDO1( int ldo_number = 1, int pin0 = 0, int pin1 = 1, int pin2 = 4, float *v_v = v1_values );
+	Pca9617adp_Ard_LDO1( int ldo_number = 1, int pin0 = 5, int pin1 = 4, int pin2 = 3, float *v_v = v1_values );
 	~Pca9617adp_Ard_LDO1();
 };
 
@@ -67,7 +67,7 @@ class Pca9617adp_Ard_LDO2 : public Pca9617adp_Ard_LDO {
 public:
 	using Pca9617adp_Ard_LDO::operator=;
 
-	Pca9617adp_Ard_LDO2( int ldo_number = 2, int pin0 = 2, int pin1 = 3, float *v_v = v2_values );
+	Pca9617adp_Ard_LDO2( int ldo_number = 2, int pin0 = 2, int pin1 = 1, float *v_v = v2_values );
 	~Pca9617adp_Ard_LDO2();
 };
 
