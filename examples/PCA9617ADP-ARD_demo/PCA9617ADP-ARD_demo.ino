@@ -61,20 +61,25 @@ void setup() {
 }
 
 void loop() {
-  for (int i = 0; i < Pca9617adp_Ard_LDO1::v1_variation; i++) {
-    ldo1.value(i);
+  Serial.print("*******************************");
+  Serial.print(Pca9617adp_Ard_LDO::v1_variation);
+  Serial.print(Pca9617adp_Ard_LDO::v2_variation);
+  Serial.print("*******************************");
 
-    for (int j = 0; j < Pca9617adp_Ard_LDO2::v2_variation; j++) {
-      ldo2.value(j);
+  for (int v1 = 0; v1 < Pca9617adp_Ard_LDO::v1_variation; v1++) {
+    ldo1 = v1;
 
-      if ((3 == i) && (0 == j))
+    for (int v2 = 0; v2 < Pca9617adp_Ard_LDO::v2_variation; v2++) {
+      ldo2 = v2;
+
+      if ((3 == v1) && (0 == v2))
         continue;
 
 #ifndef ENABLE_FULL_LDO2_VOLTAGE_VARIATION
       Serial.print("LDO1[V]=");
-      Serial.print(ldo1.voltage());
+      Serial.print(ldo1.voltage(v1));
       Serial.print(", LDO2[V]=");
-      Serial.println(ldo2.voltage());
+      Serial.println(ldo2.voltage(v2));
 #endif
 
       delay(1000);
