@@ -23,7 +23,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">BusRepeater_NXP_Arduino<span id="projectnumber">&#160;1.0.2</span>
+   <div id="projectname">BusRepeater_NXP_Arduino<span id="projectnumber">&#160;1.0.3</span>
    </div>
    <div id="projectbrief">Temperature sensor device operation sample code for Arduino</div>
   </td>
@@ -116,9 +116,12 @@ How to use?</h3>
 <p>After library install, Choose menu on Arduino-IDE: <code>File</code>→<code>Examples</code>→<code>BusRepeater_NXP_Arduino</code>→ PCA9617ADP-ARD_demo</p>
 <h3><a class="anchor" id="autotoc_md8"></a>
 The demo code</h3>
-<p>When the program is started, <b>messages</b> are appeared on terminal screen at <b>begining only</b>. <br  />
+<p>On <b>Arduino Uno R3</b> ... When the program is started, <b>messages</b> are appeared on terminal screen at <b>begining only</b>. <br  />
  <b>While the demo running, no screen update will be done</b> because LDO2 control line is shared with <code>Serial.print()</code> feature on Arduino SDK. <u>To perform output all voltage variation on LDO2, the screen message needed to be disabled.</u> <br  />
  While the demo, prove on the signal lines and monitor the waveform on an oscilloscope. <br  />
+</p>
+<p>On <b>Arduino Uno R4</b>, such restriction does not exist. <br  />
+ The messages will be shown on the screen. <br  />
 </p>
 <p>LDO1 and LDO2 can output several voltages. LDO1 voltage becomes the signal voltage on A-side of DUT and LDO2 voltage becomes B-side one. <br  />
 </p><ul>
