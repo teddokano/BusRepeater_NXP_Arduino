@@ -17,7 +17,11 @@
 #include "M24C02.h"
 #include "PCA9617ADP_ARD_LDO.h"
 
-#define ENABLE_FULL_LDO2_VOLTAGE_VARIATION
+#define SERIAL_OUT_DISABLE
+
+#if defined(ARDUINO_UNOR4_MINIMA) || defined(ARDUINO_UNOR4_WIFI)
+#undef SERIAL_OUT_DISABLE
+#endif
 
 M24C02 eeprom;
 Pca9617adp_Ard_LDO1 ldo1;
@@ -43,29 +47,27 @@ void setup() {
 
   eeprom.write(0, (uint8_t *)test_str, sizeof(test_str));
 
+#if !(defined(ARDUINO_UNOR4_MINIMA) || defined(ARDUINO_UNOR4_WIFI))
   Serial.println("");
   Serial.println("*** CAUTION! ***");
 
-#ifdef ENABLE_FULL_LDO2_VOLTAGE_VARIATION
+#ifdef SERIAL_OUT_DISABLE
   Serial.println("Measure the behavior on an oscilloscope. Nothing will be appear on this terminal screen while program running.");
-  Serial.println("You can enable periodic message on screen by disabling \"ENABLE_FULL_LDO2_VOLTAGE_VARIATION\".");
-  Serial.println("However the \"ENABLE_FULL_LDO2_VOLTAGE_VARIATION\" setting take over LDO2 control signal partially.");
-  Serial.println("To enable all voltage variation on LDO2, you need to enable \"ENABLE_FULL_LDO2_VOLTAGE_VARIATION\" option.");
+  Serial.println("You can enable periodic message on screen by disabling \"SERIAL_OUT_DISABLE\".");
+  Serial.println("However the \"SERIAL_OUT_DISABLE\" setting take over LDO2 control signal partially.");
+  Serial.println("To enable all voltage variation on LDO2, you need to define \"SERIAL_OUT_DISABLE\" option.");
   Serial.println("");
   Serial.end();
 #else
-  Serial.println("The \"ENABLE_FULL_LDO2_VOLTAGE_VARIATION\" setting is enabled.");
-  Serial.println("Whith this setting, the LDO2 voltage will be controlled as 3.3V, 4.96V, 3.3V, 4.96V");
+  Serial.println("The \"SERIAL_OUT_DISABLE\" setting is undefined.");
+  Serial.println("Whith this setting, the LDO2 voltage will be controlled in order of 3.3V, 4.96V, 3.3V, 4.96V");
   Serial.println("");
-#endif
+#endif  // SERIAL_OUT_DISABLE
+
+#endif  // !(defined(ARDUINO_UNOR4_MINIMA) || defined(ARDUINO_UNOR4_WIFI))
 }
 
 void loop() {
-  Serial.print("*******************************");
-  Serial.print(Pca9617adp_Ard_LDO::v1_variation);
-  Serial.print(Pca9617adp_Ard_LDO::v2_variation);
-  Serial.print("*******************************");
-
   for (int v1 = 0; v1 < Pca9617adp_Ard_LDO::v1_variation; v1++) {
     ldo1 = v1;
 
@@ -75,7 +77,7 @@ void loop() {
       if ((3 == v1) && (0 == v2))
         continue;
 
-#ifndef ENABLE_FULL_LDO2_VOLTAGE_VARIATION
+#ifndef SERIAL_OUT_DISABLE
       Serial.print("LDO1[V]=");
       Serial.print(ldo1.voltage(v1));
       Serial.print(", LDO2[V]=");
@@ -93,7 +95,7 @@ void try_eeprom_read(void) {
 
   eeprom.read(0, (uint8_t *)read_str, READ_BUFFER_SIZE);
 
-#ifndef ENABLE_FULL_LDO2_VOLTAGE_VARIATION
+#ifndef SERIAL_OUT_DISABLE
   Serial.println(read_str);
 #endif
 }

@@ -39,10 +39,14 @@ After library install, Choose menu on Arduino-IDE: `File`→`Examples`→`BusRep
 
 ### The demo code
 
+On **Arduino Uno R3** ...
 When the program is started, **messages** are appeared on terminal screen at **begining only**.  
 **While the demo running, no screen update will be done** because LDO2 control line is shared with `Serial.print()` feature on Arduino SDK. 
 <U>To perform output all voltage variation on LDO2, the screen message needed to be disabled.</U>  
 While the demo, prove on the signal lines and monitor the waveform on an oscilloscope.  
+
+On **Arduino Uno R4**, such restriction does not exist.  
+The messages will be shown on the screen.  
 
 LDO1 and LDO2 can output several voltages. LDO1 voltage becomes the signal voltage on A-side of DUT and LDO2 voltage becomes B-side one.  
 - LDO1 (A-side, I²C signals on J18) output can be set 0.8V, 1.8V, 2.5V, 3.3V and 4.96V.  
